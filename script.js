@@ -1,47 +1,51 @@
 let fields = [
     null,
     null,
-    'circle',
-    'circle',
     null,
     null,
     null,
-    'cross',
+    null,
+    null,
+    null,
     null,
 ];
 
 function init() {
-    render(); // Initial render 
+    render();// Spiel starten
 }
 
+// Funktion zum Rendern der Tic Tac Toe Tabelle
 function render() {
-    let container = document.getElementById("contain");
-    let table = document.createElement("table");
-
+    let container = document.getElementById('contain');
+    let table = '<table>';
     for (let i = 0; i < 3; i++) {
-        let row = document.createElement("tr");
-
+        table += '<tr>';
         for (let j = 0; j < 3; j++) {
-            let cell = document.createElement("td");
-
-            // Calculate the index in the fields array based on row and column
             let index = i * 3 + j;
-
-            // Set the content of the cell based on the fields array
-            if (fields[index] === 'circle') {
-                cell.textContent = 'o';
-            } else if (fields[index] === 'cross') {
-                cell.textContent = 'x';
-            } else {
-                cell.textContent = ''; // Empty cell
-            }
-
-            row.appendChild(cell);
+            let value = fields[index] ? fields[index] : '';
+            table += `<td onclick="onCellClick(${index})">${value}</td>`;
         }
+        table += '</tr>';
+    }
+    table += '</table>';
+    container.innerHTML = table;
+}
 
-        table.appendChild(row);
+// Funktion, die aufgerufen wird, wenn ein Zelle angeklickt wird
+function onCellClick(index) {
+    // Überprüfen, ob das Feld bereits belegt ist
+    if (fields[index] !== null) {
+        return;
     }
 
-    container.innerHTML = ""; // Clear previous content
-    container.appendChild(table);
+    // Wechseln zwischen 'o' und 'x'
+    fields[index] = currentPlayer === 'x' ? 'o' : 'x';
+
+    // Hier können weitere Funktionen aufgerufen werden, um das Spiel zu überprüfen (z.B. Gewinnbedingungen)
+    // ...
+
+    // Neu rendern, um den aktualisierten Zustand anzuzeigen
+    render();
 }
+
+

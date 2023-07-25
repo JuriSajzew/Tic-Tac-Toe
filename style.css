@@ -3,19 +3,25 @@ body {
     padding: 0;
     font-family: "Open Sans", sans-serif;
     background-color: #323232;
-    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
     text-align: center;
     color: white;
+
 }
 
 #contain {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 86px);
+    margin-top: 25vh;
+    margin-bottom: 25vh;
 }
 
 table td {
@@ -51,4 +57,40 @@ td {
     font-size: 36px;
     font-weight: bold;
     border: 2px solid white;
+}
+
+td:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+}
+
+.winning-line {
+    position: absolute;
+    height: 4px;
+    background-color: white;
+    transform-origin: 0 0;
+    z-index: 1;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 800px) {
+    #contain{
+        margin-top: 13vh;
+        margin-bottom: 13vh;
+    }
+    
 }
